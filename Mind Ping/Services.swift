@@ -107,6 +107,10 @@ final class AppState: ObservableObject {
         return selectedThemeIndex == 4 ? Color.white.opacity(0.08) : Color.white.opacity(0.05)
     }
 
+    var currentTextColor: Color {
+        return selectedThemeIndex == 4 ? Color.white : Color.primary
+    }
+
     // First launch date (for "Reflecting since {Mon YYYY}")
     @Published private(set) var firstLaunchDate: Date = {
         let ts = UserDefaults.standard.double(forKey: "firstLaunchTimestamp")
