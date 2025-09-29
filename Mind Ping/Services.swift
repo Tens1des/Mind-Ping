@@ -77,7 +77,7 @@ final class AppState: ObservableObject {
     }
 
     // Theme colors
-    private let themeColors: [Color] = [Color.purple, Color.green, Color.orange, Color.cyan]
+    private let themeColors: [Color] = [Color.purple, Color.green, Color.orange, Color.cyan, Color.black]
     
     var currentThemeColor: Color {
         return themeColors[selectedThemeIndex]
@@ -89,8 +89,22 @@ final class AppState: ObservableObject {
         case 1: return Color(red: 0.95, green: 1.0, blue: 0.95) // light green
         case 2: return Color(red: 1.0, green: 0.97, blue: 0.9) // light orange
         case 3: return Color(red: 0.95, green: 0.98, blue: 1.0) // light cyan
+        case 4: return Color.black.opacity(0.95) // black
         default: return Color(red: 1.0, green: 0.95, blue: 0.98)
         }
+    }
+
+    // Adaptive UI helpers for strokes and fills
+    var currentStrokeColor: Color {
+        return selectedThemeIndex == 4 ? Color.white.opacity(0.2) : currentThemeColor.opacity(0.2)
+    }
+
+    var currentCardFill: Color {
+        return selectedThemeIndex == 4 ? Color.white.opacity(0.06) : Color.white.opacity(0.03)
+    }
+
+    var currentFieldFill: Color {
+        return selectedThemeIndex == 4 ? Color.white.opacity(0.08) : Color.white.opacity(0.05)
     }
 
     // First launch date (for "Reflecting since {Mon YYYY}")

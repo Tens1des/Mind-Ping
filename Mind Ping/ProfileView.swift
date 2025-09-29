@@ -9,7 +9,7 @@ struct ProfileView: View {
     @EnvironmentObject var app: AppState
     @State private var nameInput: String = ""
 
-    private let themeColors: [Color] = [Color.purple, Color.green, Color.orange, Color.cyan]
+    private let themeColors: [Color] = [Color.purple, Color.green, Color.orange, Color.cyan, Color.black]
     private let textSizes: [String] = ["Small", "Normal", "Large"]
     private let avatarNames: [String] = (1...10).map { "ava\($0)" }
 
@@ -97,8 +97,8 @@ struct ProfileView: View {
             }
         }
         .padding(20)
-        .background(RoundedRectangle(cornerRadius: 16).fill(Color.white.opacity(0.03)))
-        .overlay(RoundedRectangle(cornerRadius: 16).stroke(app.currentThemeColor.opacity(0.2), lineWidth: 1))
+        .background(RoundedRectangle(cornerRadius: 16).fill(app.currentCardFill))
+        .overlay(RoundedRectangle(cornerRadius: 16).stroke(app.currentStrokeColor, lineWidth: 1))
     }
 
     private var themeCard: some View {
@@ -107,24 +107,26 @@ struct ProfileView: View {
                 Image(systemName: "paintpalette")
                 Text("Color Theme").font(.headline)
             }
-            HStack(spacing: 20) {
-                ForEach(Array(themeColors.enumerated()), id: \.offset) { idx, color in
-                    Button(action: { app.selectedThemeIndex = idx }) {
-                        Circle()
-                            .fill(color)
-                            .frame(width: 60, height: 60)
-                            .overlay(
-                                Circle()
-                                    .stroke(idx == app.selectedThemeIndex ? app.currentThemeColor : Color.clear, lineWidth: 3)
-                            )
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 16) {
+                    ForEach(Array(themeColors.enumerated()), id: \.offset) { idx, color in
+                        Button(action: { app.selectedThemeIndex = idx }) {
+                            Circle()
+                                .fill(color)
+                                .frame(width: 56, height: 56)
+                                .overlay(
+                                    Circle()
+                                        .stroke(idx == app.selectedThemeIndex ? app.currentThemeColor : Color.clear, lineWidth: 3)
+                                )
+                        }
                     }
                 }
-                Spacer()
+                .padding(.vertical, 2)
             }
         }
         .padding(20)
-        .background(RoundedRectangle(cornerRadius: 16).fill(Color.white.opacity(0.03)))
-        .overlay(RoundedRectangle(cornerRadius: 16).stroke(app.currentThemeColor.opacity(0.2), lineWidth: 1))
+        .background(RoundedRectangle(cornerRadius: 16).fill(app.currentCardFill))
+        .overlay(RoundedRectangle(cornerRadius: 16).stroke(app.currentStrokeColor, lineWidth: 1))
     }
 
     private var languageCard: some View {
@@ -142,12 +144,12 @@ struct ProfileView: View {
                     .foregroundStyle(.secondary)
             }
             .padding(16)
-            .background(RoundedRectangle(cornerRadius: 12).fill(Color.white.opacity(0.05)))
-            .overlay(RoundedRectangle(cornerRadius: 12).stroke(app.currentThemeColor.opacity(0.2), lineWidth: 1))
+            .background(RoundedRectangle(cornerRadius: 12).fill(app.currentFieldFill))
+            .overlay(RoundedRectangle(cornerRadius: 12).stroke(app.currentStrokeColor, lineWidth: 1))
         }
         .padding(20)
-        .background(RoundedRectangle(cornerRadius: 16).fill(Color.white.opacity(0.03)))
-        .overlay(RoundedRectangle(cornerRadius: 16).stroke(app.currentThemeColor.opacity(0.2), lineWidth: 1))
+        .background(RoundedRectangle(cornerRadius: 16).fill(app.currentCardFill))
+        .overlay(RoundedRectangle(cornerRadius: 16).stroke(app.currentStrokeColor, lineWidth: 1))
     }
 
     private var textSizeCard: some View {
@@ -165,12 +167,12 @@ struct ProfileView: View {
                     .foregroundStyle(.secondary)
             }
             .padding(16)
-            .background(RoundedRectangle(cornerRadius: 12).fill(Color.white.opacity(0.05)))
-            .overlay(RoundedRectangle(cornerRadius: 12).stroke(app.currentThemeColor.opacity(0.2), lineWidth: 1))
+            .background(RoundedRectangle(cornerRadius: 12).fill(app.currentFieldFill))
+            .overlay(RoundedRectangle(cornerRadius: 12).stroke(app.currentStrokeColor, lineWidth: 1))
         }
         .padding(20)
-        .background(RoundedRectangle(cornerRadius: 16).fill(Color.white.opacity(0.03)))
-        .overlay(RoundedRectangle(cornerRadius: 16).stroke(app.currentThemeColor.opacity(0.2), lineWidth: 1))
+        .background(RoundedRectangle(cornerRadius: 16).fill(app.currentCardFill))
+        .overlay(RoundedRectangle(cornerRadius: 16).stroke(app.currentStrokeColor, lineWidth: 1))
     }
 
     private var aboutCard: some View { EmptyView() }

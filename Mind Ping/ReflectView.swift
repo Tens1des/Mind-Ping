@@ -10,7 +10,11 @@ import SwiftUI
 struct ReflectView: View {
     @EnvironmentObject var app: AppState
 
-    private let defaultEmojiRow: [String] = ["😊","😂","😘","😎","🥰","🤩"]
+    private let defaultEmojiRow: [String] = [
+        "😀","😃","😄","😁","😆","😂","🙂","😊","😍","🥰",
+        "😘","😗","😙","😚","😎","🤩","🤗","🤔","😌","😇",
+        "😢","😭","😤","😠","😴","🤤","🤒","🤕","🤧","🤯"
+    ]
 
     var body: some View {
         VStack(spacing: 24) {
@@ -127,16 +131,7 @@ struct ReflectView: View {
                             )
                     }
                 }
-                Button(action: {}) {
-                    HStack(spacing: 6) {
-                        Image(systemName: "plus.circle")
-                        Text("Add emoji")
-                    }
-                    .font(.subheadline)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 8)
-                    .background(RoundedRectangle(cornerRadius: 12).fill(Color.primary.opacity(0.05)))
-                }
+             
             }
         }
     }
