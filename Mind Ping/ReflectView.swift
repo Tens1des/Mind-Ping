@@ -17,15 +17,21 @@ struct ReflectView: View {
     ]
 
     var body: some View {
-        VStack(spacing: 24) {
-            header
-            questionCard
-            inputCard
-            Spacer(minLength: 0)
+        ScrollView {
+            VStack(spacing: 20) {
+                header
+                questionCard
+                inputCard
+            }
+            .padding(.horizontal, 16)
+            .padding(.top, 12)
+            .padding(.bottom, 24)
         }
-        .padding(.horizontal, 16)
-        .padding(.top, 12)
         .background(app.currentThemeBackground.ignoresSafeArea())
+        .safeAreaInset(edge: .bottom) {
+            // Spacer under TabBar to prevent overlap
+            Color.clear.frame(height: 12)
+        }
     }
 
     private var header: some View {
@@ -61,9 +67,11 @@ struct ReflectView: View {
             Text(app.todayQuestion)
                 .font(.title2).bold()
                 .multilineTextAlignment(.center)
+                .lineLimit(3)
+                .minimumScaleFactor(0.85)
         }
-        .frame(maxWidth: .infinity, minHeight: 220)
-        .padding(20)
+        .frame(maxWidth: .infinity, minHeight: 180)
+        .padding(16)
         .background(RoundedRectangle(cornerRadius: 16).fill(Color.primary.opacity(0.05)))
         .padding(.top, 4)
     }
@@ -80,7 +88,7 @@ struct ReflectView: View {
                             .stroke(app.currentThemeColor.opacity(0.25), lineWidth: 1.5)
                     )
                 TextEditor(text: $app.textInput)
-                    .frame(height: 120)
+                    .frame(minHeight: 100, maxHeight: 140)
                     .scrollContentBackground(.hidden)
                     .padding(.horizontal, 8)
                     .padding(.vertical, 8)
@@ -131,7 +139,7 @@ struct ReflectView: View {
                             )
                     }
                 }
-             
+                // user removed the add emoji button; nothing here
             }
         }
     }
