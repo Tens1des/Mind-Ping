@@ -9,7 +9,7 @@ struct ProfileView: View {
     @EnvironmentObject var app: AppState
     @State private var nameInput: String = ""
 
-    private let themeColors: [Color] = [Color.purple, Color.green, Color.orange, Color.cyan, Color.black]
+    private let themeColors: [Color] = [Color.purple, Color.green, Color.orange, Color.cyan, Color.gray]
     private let textSizes: [String] = ["Small", "Normal", "Large"]
     private let avatarNames: [String] = (1...10).map { "ava\($0)" }
 
@@ -65,7 +65,7 @@ struct ProfileView: View {
                     TextField("Name", text: $nameInput, onCommit: { app.username = nameInput })
                         .textFieldStyle(.roundedBorder)
                         .font(.headline)
-                    Text("Tap to edit your name").font(.caption).foregroundStyle(app.selectedThemeIndex == 4 ? .white.opacity(0.7) : .secondary)
+                    Text("Tap to edit your name").font(.caption).foregroundStyle(app.currentSecondaryTextColor)
                 }
                 Spacer()
             }
@@ -135,14 +135,14 @@ struct ProfileView: View {
                 Image(systemName: "globe").foregroundStyle(app.currentTextColor)
                 Text("Language").font(.headline).foregroundStyle(app.currentTextColor)
             }
-            Text("Choose your preferred language").font(.subheadline).foregroundStyle(app.selectedThemeIndex == 4 ? .white.opacity(0.7) : .secondary)
+            Text("Choose your preferred language").font(.subheadline).foregroundStyle(app.currentSecondaryTextColor)
             HStack {
                 Text(app.languageCode == "en" ? "English" : app.languageCode.uppercased())
                     .font(.subheadline)
                     .foregroundStyle(app.currentTextColor)
                 Spacer()
                 Image(systemName: "chevron.right")
-                    .foregroundStyle(app.selectedThemeIndex == 4 ? .white.opacity(0.7) : .secondary)
+                    .foregroundStyle(app.currentSecondaryTextColor)
             }
             .padding(16)
             .background(RoundedRectangle(cornerRadius: 12).fill(app.currentFieldFill))
@@ -159,14 +159,14 @@ struct ProfileView: View {
                 Image(systemName: "textformat").foregroundStyle(app.currentTextColor)
                 Text("Text Size").font(.headline).foregroundStyle(app.currentTextColor)
             }
-            Text("Adjust reading comfort").font(.subheadline).foregroundStyle(app.selectedThemeIndex == 4 ? .white.opacity(0.7) : .secondary)
+            Text("Adjust reading comfort").font(.subheadline).foregroundStyle(app.currentSecondaryTextColor)
             HStack {
                 Text(app.textSize)
                     .font(.subheadline)
                     .foregroundStyle(app.currentTextColor)
                 Spacer()
                 Image(systemName: "chevron.right")
-                    .foregroundStyle(app.selectedThemeIndex == 4 ? .white.opacity(0.7) : .secondary)
+                    .foregroundStyle(app.currentSecondaryTextColor)
             }
             .padding(16)
             .background(RoundedRectangle(cornerRadius: 12).fill(app.currentFieldFill))

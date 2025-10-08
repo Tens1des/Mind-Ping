@@ -77,7 +77,7 @@ final class AppState: ObservableObject {
     }
 
     // Theme colors
-    private let themeColors: [Color] = [Color.purple, Color.green, Color.orange, Color.cyan, Color.black]
+    private let themeColors: [Color] = [Color.purple, Color.green, Color.orange, Color.cyan, Color.gray]
     
     var currentThemeColor: Color {
         return themeColors[selectedThemeIndex]
@@ -89,26 +89,30 @@ final class AppState: ObservableObject {
         case 1: return Color(red: 0.95, green: 1.0, blue: 0.95) // light green
         case 2: return Color(red: 1.0, green: 0.97, blue: 0.9) // light orange
         case 3: return Color(red: 0.95, green: 0.98, blue: 1.0) // light cyan
-        case 4: return Color.black.opacity(0.95) // black
+        case 4: return Color(red: 0.12, green: 0.12, blue: 0.12) // dark gray
         default: return Color(red: 1.0, green: 0.95, blue: 0.98)
         }
     }
 
     // Adaptive UI helpers for strokes and fills
     var currentStrokeColor: Color {
-        return selectedThemeIndex == 4 ? Color.white.opacity(0.2) : currentThemeColor.opacity(0.2)
+        return selectedThemeIndex == 4 ? Color.white.opacity(0.15) : currentThemeColor.opacity(0.2)
     }
 
     var currentCardFill: Color {
-        return selectedThemeIndex == 4 ? Color.white.opacity(0.06) : Color.white.opacity(0.03)
+        return selectedThemeIndex == 4 ? Color.white.opacity(0.05) : Color.white.opacity(0.03)
     }
 
     var currentFieldFill: Color {
-        return selectedThemeIndex == 4 ? Color.white.opacity(0.08) : Color.white.opacity(0.05)
+        return selectedThemeIndex == 4 ? Color.white.opacity(0.07) : Color.white.opacity(0.05)
     }
 
     var currentTextColor: Color {
-        return selectedThemeIndex == 4 ? Color.white : Color.primary
+        return selectedThemeIndex == 4 ? Color.white.opacity(0.95) : Color.primary
+    }
+
+    var currentSecondaryTextColor: Color {
+        return selectedThemeIndex == 4 ? Color.white.opacity(0.6) : Color.secondary
     }
 
     // First launch date (for "Reflecting since {Mon YYYY}")
