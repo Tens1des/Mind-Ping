@@ -31,9 +31,9 @@ struct ProfileView: View {
 
     private var header: some View {
         HStack {
-            Text("Settings").font(.headline).foregroundStyle(app.currentTextColor)
+            Text("Settings").font(.headline).foregroundStyle(.black)
             Spacer()
-            Image(systemName: "gearshape").foregroundStyle(app.currentTextColor)
+            Image(systemName: "gearshape").foregroundStyle(.black)
         }
         .padding(.top, 12)
     }
@@ -65,13 +65,13 @@ struct ProfileView: View {
                     TextField("Name", text: $nameInput, onCommit: { app.username = nameInput })
                         .textFieldStyle(.roundedBorder)
                         .font(.headline)
-                    Text("Tap to edit your name").font(.caption).foregroundStyle(app.currentSecondaryTextColor)
+                    Text("Tap to edit your name").font(.caption).foregroundStyle(.gray)
                 }
                 Spacer()
             }
             
             VStack(alignment: .leading, spacing: 12) {
-                Text("Choose your avatar").font(.headline).foregroundStyle(app.currentTextColor)
+                Text("Choose your avatar").font(.headline).foregroundStyle(.black)
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 8), count: 5), spacing: 8) {
                     ForEach(avatarNames, id: \.self) { name in
                         Button(action: { app.avatarName = name }) {
@@ -104,8 +104,8 @@ struct ProfileView: View {
     private var themeCard: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack(spacing: 8) {
-                Image(systemName: "paintpalette").foregroundStyle(app.currentTextColor)
-                Text("Color Theme").font(.headline).foregroundStyle(app.currentTextColor)
+                Image(systemName: "paintpalette").foregroundStyle(.black)
+                Text("Color Theme").font(.headline).foregroundStyle(.black)
             }
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 16) {
@@ -132,17 +132,17 @@ struct ProfileView: View {
     private var languageCard: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack(spacing: 8) {
-                Image(systemName: "globe").foregroundStyle(app.currentTextColor)
-                Text("Language").font(.headline).foregroundStyle(app.currentTextColor)
+                Image(systemName: "globe").foregroundStyle(.black)
+                Text("Language").font(.headline).foregroundStyle(.black)
             }
-            Text("Choose your preferred language").font(.subheadline).foregroundStyle(app.currentSecondaryTextColor)
+            Text("Choose your preferred language").font(.subheadline).foregroundStyle(.gray)
             HStack {
                 Text(app.languageCode == "en" ? "English" : app.languageCode.uppercased())
                     .font(.subheadline)
-                    .foregroundStyle(app.currentTextColor)
+                    .foregroundStyle(.black)
                 Spacer()
                 Image(systemName: "chevron.right")
-                    .foregroundStyle(app.currentSecondaryTextColor)
+                    .foregroundStyle(.gray)
             }
             .padding(16)
             .background(RoundedRectangle(cornerRadius: 12).fill(app.currentFieldFill))
@@ -156,17 +156,17 @@ struct ProfileView: View {
     private var textSizeCard: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack(spacing: 8) {
-                Image(systemName: "textformat").foregroundStyle(app.currentTextColor)
-                Text("Text Size").font(.headline).foregroundStyle(app.currentTextColor)
+                Image(systemName: "textformat").foregroundStyle(.black)
+                Text("Text Size").font(.headline).foregroundStyle(.black)
             }
-            Text("Adjust reading comfort").font(.subheadline).foregroundStyle(app.currentSecondaryTextColor)
+            Text("Adjust reading comfort").font(.subheadline).foregroundStyle(.gray)
             HStack {
                 Text(app.textSize)
                     .font(.subheadline)
-                    .foregroundStyle(app.currentTextColor)
+                    .foregroundStyle(.black)
                 Spacer()
                 Image(systemName: "chevron.right")
-                    .foregroundStyle(app.currentSecondaryTextColor)
+                    .foregroundStyle(.gray)
             }
             .padding(16)
             .background(RoundedRectangle(cornerRadius: 12).fill(app.currentFieldFill))

@@ -37,6 +37,7 @@ struct HistoryView: View {
             calendarCard
             Text("Recent Reflections (Selected dates)")
                 .font(.subheadline)
+                .foregroundStyle(.black)
                 .padding(.horizontal, 16)
             listSection
             Spacer(minLength: 0)
@@ -59,12 +60,12 @@ struct HistoryView: View {
                         Image(systemName: "person.circle").foregroundStyle(app.currentThemeColor)
                     }
                 }
-                Text("Hello \(app.username)").font(.headline)
+                Text("Hello \(app.username)").font(.headline).foregroundStyle(.black)
             }
             Spacer()
             Text(Date().formatted(date: .abbreviated, time: .omitted))
                 .font(.subheadline)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(.gray)
         }
         .padding(.horizontal, 16)
         .padding(.top, 12)
@@ -74,13 +75,13 @@ struct HistoryView: View {
         VStack(spacing: 12) {
             HStack {
                 Button(action: { currentMonthOffset -= 1 }) {
-                    Image(systemName: "chevron.left")
+                    Image(systemName: "chevron.left").foregroundStyle(.black)
                 }
                 Spacer()
-                Text(monthTitle).font(.headline)
+                Text(monthTitle).font(.headline).foregroundStyle(.black)
                 Spacer()
                 Button(action: { currentMonthOffset += 1 }) {
-                    Image(systemName: "chevron.right")
+                    Image(systemName: "chevron.right").foregroundStyle(.black)
                 }
             }
             .padding(.horizontal, 12)
@@ -96,7 +97,7 @@ struct HistoryView: View {
         let symbols = Calendar.current.shortWeekdaySymbols // Sun..Sat locale-based
         return HStack {
             ForEach(symbols, id: \.self) { s in
-                Text(s.prefix(2)).font(.caption).frame(maxWidth: .infinity)
+                Text(s.prefix(2)).font(.caption).foregroundStyle(.black).frame(maxWidth: .infinity)
             }
         }
     }
@@ -137,7 +138,7 @@ struct HistoryView: View {
                                 .frame(width: 32, height: 32)
                             Text("\(Calendar.current.component(.day, from: d))")
                                 .font(.subheadline)
-                                .foregroundStyle(.primary)
+                                .foregroundStyle(.black)
                         }
                         HStack(spacing: 2) {
                             ForEach(app.emojisFor(date: d), id: \.self) { e in
@@ -182,10 +183,11 @@ struct HistoryView: View {
             }
             Text(r.question)
                 .font(.headline)
+                .foregroundStyle(.black)
             if !r.text.isEmpty {
                 Text(r.text)
                     .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(.gray)
             }
         }
         .padding(16)

@@ -28,7 +28,7 @@ struct AchievementsView: View {
 
     private var header: some View {
         HStack {
-            Text("Your Profile").font(.headline)
+            Text("Your Profile").font(.headline).foregroundStyle(.black)
             Spacer()
             Image(systemName: "gearshape")
         }
@@ -52,10 +52,10 @@ struct AchievementsView: View {
                 }
             }
             VStack(alignment: .leading, spacing: 4) {
-                Text(app.username).font(.headline)
+                Text(app.username).font(.headline).foregroundStyle(.black)
                 Text(app.reflectingSinceString)
                     .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(.gray)
             }
             Spacer()
         }
@@ -81,8 +81,8 @@ struct AchievementsView: View {
         VStack(spacing: 8) {
             Image(systemName: icon)
                 .foregroundStyle(app.currentThemeColor)
-            Text(value).font(.title2).bold()
-            Text(title).font(.subheadline)
+            Text(value).font(.title2).bold().foregroundStyle(.black)
+            Text(title).font(.subheadline).foregroundStyle(.gray)
         }
         .frame(maxWidth: .infinity)
         .padding(16)
@@ -124,9 +124,10 @@ struct AchievementsView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(a.title)
                     .font(.headline)
+                    .foregroundStyle(.black)
                 Text(a.description)
                     .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(.gray)
             }
             Spacer()
         }

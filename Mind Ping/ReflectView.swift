@@ -51,11 +51,12 @@ struct ReflectView: View {
                 }
                 Text("Hello \(app.username)")
                     .font(.headline)
+                    .foregroundStyle(.black)
             }
             Spacer()
             Text(Date().formatted(date: .abbreviated, time: .omitted))
                 .font(.subheadline)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(.gray)
         }
     }
 
@@ -69,6 +70,7 @@ struct ReflectView: View {
                 .multilineTextAlignment(.center)
                 .lineLimit(3)
                 .minimumScaleFactor(0.85)
+                .foregroundStyle(.black)
         }
         .frame(maxWidth: .infinity, minHeight: 180)
         .padding(16)
@@ -80,6 +82,7 @@ struct ReflectView: View {
         VStack(alignment: .leading, spacing: 14) {
             Text("Your Thoughts")
                 .font(.system(size: 22, weight: .semibold))
+                .foregroundStyle(.black)
             ZStack(alignment: .topLeading) {
                 RoundedRectangle(cornerRadius: 16)
                     .fill(Color.white.opacity(0.1))
@@ -103,6 +106,7 @@ struct ReflectView: View {
             VStack(alignment: .leading, spacing: 12) {
                 Text("How do you feel?")
                     .font(.system(size: 22, weight: .semibold))
+                    .foregroundStyle(.black)
                 emojiRow
                 Button(action: { app.saveToday() }) {
                     Text("Save reflection")
